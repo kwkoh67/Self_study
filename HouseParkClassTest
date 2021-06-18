@@ -1,0 +1,30 @@
+﻿# __init__로 초기화 , inheritance, overriding
+
+class HousePark:
+	lastname = "Park" # 성은 박씨
+	def __init__(self,name): # 초기화
+		self.fullname = self.lastname + name
+	
+	def travel(self, where):
+		print("%s, %s 여행을 가다." % (self.fullname, where))
+	
+	def love(self, other): # 다른 객체를 가져옴
+		print("%s, %s와 사랑에 빠졌습니다" % (self.fullname, other.fullname))
+	
+	def __add__(self, other): # 연산자 오버로딩
+		print("%s, %s와 결혼하였습니다." %(self.fullname, other.fullname))
+
+class HouseKim(HousePark): #park 상속
+	lastname = "Kim"
+
+	def travel(self, where, day): # housepark 함수의 오버라이딩
+		print("%s, %s 여행을 %d 일 간다." % (self.fullname, where, day))
+
+
+		
+pey = HousePark("경욱")
+pey.travel("런던")
+juliet = HouseKim("줄리엣")
+juliet.travel("파리",3)
+pey.love(juliet)
+pey+juliet
